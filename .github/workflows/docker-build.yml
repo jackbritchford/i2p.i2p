@@ -11,6 +11,16 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - name: Build the Docker image
-              run: docker build . --file Dockerfile --tag i2p-test:$(date +%s)
+            -
+                uses: actions/checkout@v3
+            -
+                uses: docker/build-push-action@v3
+                with:
+                    context: .
+                    cache-from: type=gha
+                    cache-to: type=gha,mode=max
+                    push: false
+                    tags: jb-i2p:latest
+            -
+                name: Build the Docker image
+                run: docker build . --file Dockerfile --tag jb-i2p:$(date +%s)
