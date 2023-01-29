@@ -4,6 +4,7 @@ RUN install-glibc
 ENV APP_HOME="/i2p"
 
 WORKDIR /tmp/build
+# optimize this copy, otherwise any changes in the repo cause a change (.dockerignore)
 COPY . .
 
 RUN add-pkg --virtual build-base gettext tar bzip2 apache-ant openjdk17 \
