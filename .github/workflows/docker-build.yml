@@ -27,9 +27,9 @@ jobs:
 #                    tags: jb-i2p:latest
             -
                 name: Build the Docker image
-                # --load for --output-type=docker
+                # --load for --output-type=docker, required for the later save stage
                 # (?) change this to docker buildx build ...
-                run: docker build . --cache-from type=gha --cache-to type=gha,mode=max --file Dockerfile -t jb-i2p:$(date +%s) -t jb-i2p:latest
+                run: docker build . --cache-from type=gha --cache-to type=gha,mode=max --file Dockerfile -t jb-i2p:$(date +%s) --load -t jb-i2p:latest
             -
                 name: Export Docker image as file (testing)
                 run: docker save -o jb-i2p.dkrbak jb-i2p:latest
