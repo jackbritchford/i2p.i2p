@@ -30,7 +30,7 @@ jobs:
                 run: docker build . --file Dockerfile -t jb-i2p:$(date +%s) -t jb-i2p:latest
             -
                 name: Export Docker image as file (testing)
-                run: docker save -o jb-i2p.dkrbak jb-i2p:latest
+                run: docker buildx save -o jb-i2p.dkrbak jb-i2p:latest
             -
                 name: Archive production artifacts
                 uses: actions/upload-artifact@v3
